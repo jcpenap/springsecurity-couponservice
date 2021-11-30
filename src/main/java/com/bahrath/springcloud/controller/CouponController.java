@@ -14,12 +14,12 @@ public class CouponController {
     @Autowired
     private CouponRepository repository;
 
-    @RequestMapping(value = "/coupons", method = RequestMethod.POST)
+    @PostMapping(value = "/coupons")
     public Coupon create(@RequestBody  Coupon coupon) {
         return repository.save(coupon);
     }
 
-    @RequestMapping(value = "/coupons/{code}", method = RequestMethod.GET)
+    @GetMapping(value = "/coupons/{code}")
     public Coupon getCoupon(@PathVariable("code")  String code) {
         return repository.findByCode(code);
     }
