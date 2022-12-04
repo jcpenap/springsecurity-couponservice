@@ -11,4 +11,9 @@ public class CouponController {
         return "index";
     }
 
+    @GetMapping("/showCreateCoupon")
+    public String showCreateCoupon() {
+        return "createCoupon";
+    }
+
 }
