@@ -25,9 +25,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin();
         http.authorizeRequests()
-                .mvcMatchers(HttpMethod.GET, "/couponapi/coupons/{code:^[A-Z]*$}", "/index", "/", "/showCreateCoupon", "/createCoupon", "/createResponse")
+                .mvcMatchers(HttpMethod.GET, "/couponapi/coupons/{code:^[A-Z]*$}", "/index", "/",
+                        "/showCreateCoupon",
+                        "/createCoupon",
+                        "/createResponse",
+                        "/showGetCoupon",
+                        "/couponDetails")
                     .hasAnyRole("USER", "ADMIN")
-                .mvcMatchers(HttpMethod.POST, "/couponapi/coupons", "/saveCoupon").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST, "/couponapi/coupons",
+                        "/saveCoupon",
+                        "/getCoupon")
+                    .hasRole("ADMIN")
                 .mvcMatchers(HttpMethod.POST, "/productapi/products").hasAnyRole("USER", "ADMIN")
                 .anyRequest().denyAll()
                 .and().csrf().disable();
