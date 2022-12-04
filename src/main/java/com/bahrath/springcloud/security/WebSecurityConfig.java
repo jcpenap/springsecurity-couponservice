@@ -26,11 +26,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin();
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/couponapi/coupons/{code:^[A-Z]*$}", "/index", "/",
-                        "/showCreateCoupon",
-                        "/createCoupon",
-                        "/createResponse",
                         "/showGetCoupon",
+                        "/getCoupon",
                         "/couponDetails")
+                    .hasAnyRole("USER", "ADMIN")
+                .mvcMatchers(HttpMethod.GET, "/showCreateCoupon",
+                        "/createCoupon",
+                        "/createResponse")
+                    .hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.POST, "/getCoupon")
                     .hasAnyRole("USER", "ADMIN")
                 .mvcMatchers(HttpMethod.POST, "/couponapi/coupons",
                         "/saveCoupon",
