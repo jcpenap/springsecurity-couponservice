@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/getCoupon")
                     .hasRole("ADMIN")
                 .mvcMatchers(HttpMethod.POST, "/productapi/products").hasAnyRole("USER", "ADMIN")
-                .mvcMatchers("/", "/login").permitAll()
+                .mvcMatchers("/", "/login", "/showReg", "/registerUser").permitAll()
                 .anyRequest().denyAll()
                 .and().csrf().disable()
                 .logout().logoutSuccessUrl("/");
